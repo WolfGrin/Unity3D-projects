@@ -15,10 +15,14 @@ public class NewBehaviourScript : MonoBehaviour {
         {
             for (int z = 0; z < mapSize.z; z++)
             {
+                //генерация шума Перлина
                 float noice = Mathf.PerlinNoise(x/mapSize.x, z/mapSize.z);
                 int y = Mathf.RoundToInt(noice * mapSize.y);
+                //создание игрового объекта "cube"
                 GameObject obj = Instantiate<GameObject>(cube);
+                //перемещение объеката по координатам (x, y, z)
                 obj.transform.position = new Vector3(x, y, z);
+                //установка материала для объекта
                 obj.GetComponent<Renderer>().material = 
                     (y < 6)? materials[0] :
                     (y < 7) ? materials[1] :
